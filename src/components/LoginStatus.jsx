@@ -23,13 +23,20 @@ function LoginStatus() {
     }, [auth]);
 
     if (!user) {
-        return <div>Please sign in</div>;
+        return (
+            <div>
+                <p className="signin-prompt">
+                    Please sign-in/sign up by entering your user and password in
+                    the boxes above.
+                </p>
+            </div>
+        );
     }
 
     return (
         <>
             <img className="user-avatar" src={user.photoURL} />
-            <p>Welcome {user.displayName}!</p>
+            <p className="welcome-message">Welcome {user.displayName}!</p>
         </>
     );
 }

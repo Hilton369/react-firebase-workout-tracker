@@ -15,6 +15,11 @@ import ExerciseDisplay from "./ExerciseDisplay";
 function ExerciseDropdown() {
     const [exercises, setExercises] = useState([]);
     const [selectedExercise, setSelectedExercise] = useState("");
+    const [isSelected, setIsSelected] = useState(false);
+
+    useEffect(()=>{
+        selectedExercise === "" ? setIsSelected(false) : setIsSelected(true);
+    }, [selectedExercise]);
 
     useEffect(() => {
         const unsubscribe = onSnapshot(
@@ -84,6 +89,7 @@ function ExerciseDropdown() {
                 id="exercise-select"
                 value={selectedExercise}
                 onChange={handleSelectedExerciseChange}
+                className="exercise-select"
             >
                 <option value="">Select an exercise...</option>
                 {exercises.map((exercise, index) => (
@@ -94,9 +100,9 @@ function ExerciseDropdown() {
             </select>
             <button onClick={deleteExercise}>Delete</button>
             <div className="divider"/>
-            <button onClick={editExerciseName}>Change Exercise Name</button>
+            <button onClick={editExerciseName} className="edit-exercise-name">Change Exercise Name</button>
 			<br/>
-			<ExerciseDisplay selectedExercise={selectedExercise}/>
+			{isSelected && <ExerciseDisplay selectedExercise={selectedExercise}/>}
         </>
     );
 }

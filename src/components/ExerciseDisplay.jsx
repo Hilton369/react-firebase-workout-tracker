@@ -7,7 +7,7 @@ import {
     doc,
     query,
     orderBy,
-    deleteDoc
+    deleteDoc,
 } from "firebase/firestore";
 import { auth, db } from "../FirebaseConfig";
 import { getExerciseDocId } from "./Helpers";
@@ -140,7 +140,6 @@ function ExerciseDisplay(props) {
         setWeight(e.target.value);
     }
 
-
     async function deleteEntry(index) {
         try {
             const docID = await getExerciseDocId(
@@ -187,23 +186,25 @@ function ExerciseDisplay(props) {
     return (
         <>
             <p>Add a new workout</p>
-            <input type="date" onChange={handleDateChange} />
-            <input
-                type="number"
-                placeholder="No. of sets"
-                onChange={handleSetChange}
-            />
-            <input
-                type="number"
-                placeholder="No. of reps"
-                onChange={handleRepChange}
-            />
-            <input
-                type="number"
-                placeholder="weight"
-                onChange={handleWeightChange}
-            />
-            <button onClick={addExercise}>Add Workout</button>
+            <div className="exercise-display-inputs">
+                <input type="date" onChange={handleDateChange} />
+                <input
+                    type="number"
+                    placeholder="No. of sets"
+                    onChange={handleSetChange}
+                />
+                <input
+                    type="number"
+                    placeholder="No. of reps"
+                    onChange={handleRepChange}
+                />
+                <input
+                    type="number"
+                    placeholder="weight"
+                    onChange={handleWeightChange}
+                />
+            </div>
+            <button onClick={addExercise} className="add-workout-button">Add Workout</button>
             {selectedExercise !== "" && (
                 <table className="workout-table">
                     <thead>
@@ -217,7 +218,10 @@ function ExerciseDisplay(props) {
                         {workoutList.map((obj, index) => (
                             <tr key={index}>
                                 <td className="edit-delete-column">
-                                    <button onClick={() => deleteEntry(index)} className="delete-button">
+                                    <button
+                                        onClick={() => deleteEntry(index)}
+                                        className="delete-button"
+                                    >
                                         Delete
                                     </button>
                                 </td>

@@ -54,8 +54,9 @@ function CreateExercise() {
                 placeholder="Exercise Name..."
                 id="create-exercise"
                 onChange={handleExerciseChange}
+                className="create-exercise-input"
             />
-            <button onClick={createExerciseDocument}>Create!</button>
+            <button onClick={createExerciseDocument} className="create-exercise-button">Create!</button>
         </>
     );
 }
