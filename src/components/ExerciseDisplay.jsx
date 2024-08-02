@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../FirebaseConfig";
 import { getExerciseDocId } from "./Helpers";
+import Chart from "./Chart";
 
 function ExerciseDisplay(props) {
     // Workout object for converter to convert Firebase document fields into usable variables
@@ -70,6 +71,9 @@ function ExerciseDisplay(props) {
     const [sets, setSets] = useState(0);
     const [reps, setReps] = useState(0);
     const [weight, setWeight] = useState(0);
+    const [chartBool, setChartBool] = useState(false);
+    const [chartX, setChartX] = useState([]);
+    const [chartY, setChartY] = useState([]);
 
     const heading = ["", "Date", "Sets", "Reps", "Weight"];
 
@@ -124,6 +128,16 @@ function ExerciseDisplay(props) {
         return () => unsubscribe();
     }, [selectedExercise]);
 
+    useEffect(()=>{
+        const arrX = [],  arrY = [];
+        for(let i = 0; i < workoutList.length; i++){
+            arrX.push(workoutList[i].arr[0]);
+            arrY.push(workoutList[i].arr[1]*workoutList[i].arr[2]*workoutList[i].arr[3])
+        }
+        setChartX(arrX.reverse());
+        setChartY(arrY.reverse());
+    }, [workoutList, chartBool]);
+
     function handleDateChange(e) {
         setDate(e.target.value);
     }
@@ -157,35 +171,51 @@ function ExerciseDisplay(props) {
     // Function to add new document to exercise entry collection
     async function addExercise() {
         if (selectedExercise !== "" && selectedExercise !== null) {
-            const docID = await getExerciseDocId(
-                db,
-                auth.currentUser.uid,
-                selectedExercise
-            );
-            const collectionRef = collection(db, "exercises", docID, "entries");
-            const docRef = doc(collectionRef);
-            await setDoc(docRef, {
-                date: date,
-                sets: sets,
-                reps: reps,
-                weight: weight,
-            });
-            const newDocID = docRef.id;
-            await setDoc(
-                docRef,
-                {
-                    id: newDocID,
-                },
-                { merge: true }
-            );
+            try {
+                const docID = await getExerciseDocId(
+                    db,
+                    auth.currentUser.uid,
+                    selectedExercise
+                );
+                const collectionRef = collection(
+                    db,
+                    "exercises",
+                    docID,
+                    "entries"
+                );
+                const docRef = doc(collectionRef);
+                await setDoc(docRef, {
+                    date: date,
+                    sets: sets,
+                    reps: reps,
+                    weight: weight,
+                });
+                const newDocID = docRef.id;
+                await setDoc(
+                    docRef,
+                    {
+                        id: newDocID,
+                    },
+                    { merge: true }
+                );
+            } catch (err) {
+                console.error(err);
+                alert(err);
+            }
         } else {
             alert("Please select an exercise");
         }
     }
 
+    // Function to show chart visual popup
+    function showChart() {
+        setChartBool(true);
+    }
+
     return (
         <>
-            <p>Add a new workout</p>
+            {/* Inputs and buttons for adding new workout entry */}
+            <h4>Add a new workout</h4>
             <div className="exercise-display-inputs">
                 <input type="date" onChange={handleDateChange} />
                 <input
@@ -204,7 +234,26 @@ function ExerciseDisplay(props) {
                     onChange={handleWeightChange}
                 />
             </div>
-            <button onClick={addExercise} className="add-workout-button">Add Workout</button>
+            <button onClick={addExercise} className="add-workout-button">
+                Add Workout
+            </button>
+
+            {/* Chart Popup */}
+            <button onClick={showChart} className="chart-button">
+                Create Training Volume Chart
+            </button>
+            {chartBool && (
+                <Chart
+                    selectedExercise={selectedExercise}
+                    chartBool={chartBool}
+                    setChartBool={setChartBool}
+                    chartX={chartX}
+                    setChartX={setChartX}
+                    chartY={chartY}
+                    setChartY={setChartY}
+                />
+            )}
+            {/* Workout Entries Table */}
             {selectedExercise !== "" && (
                 <table className="workout-table">
                     <thead>

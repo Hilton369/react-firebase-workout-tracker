@@ -21,13 +21,15 @@ Setup
         cd react-firebase-workout-tracker.git
 
     2. Install dependencies
-        npm install
+        npm install firebase
+        npm install chart.js react-chartjs-2
 
     3. Create and setup a Firebase project on the Firebase website.
 
     4. Obtain API key for your Firebase project and set up Firebase configuration.
 
 Usage
+
 Webapp can be used at:
 https://workout-tracker-app-e3622.web.app/
 
