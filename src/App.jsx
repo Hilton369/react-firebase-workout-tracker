@@ -5,6 +5,8 @@ import { auth } from "./FirebaseConfig";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import ExerciseDropdown from "./components/ExerciseDropdown";
+import Logo from "./components/Logo";
+import Credits from "./components/Credits";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -22,6 +24,8 @@ function App() {
         <>
             <Auth />
             <LoginStatus />
+            {!user && <Logo/>}
+            {!user && <Credits/>}
             {user && <CreateExercise />}
             <br />
             {user && <ExerciseDropdown />}

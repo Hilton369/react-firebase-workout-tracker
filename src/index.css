@@ -2,6 +2,25 @@
     font-family: "Cascadia Code", sans-serif;
 }
 
+.logo-wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.logo-wrapper img{
+    max-width: 80%;
+    height: auto;
+}
+
+.credits-wrapper{
+    text-align: center;
+    font-size: 0.75em;
+    color: gray;
+}
+
+
 .user-avatar {
     border-radius: 50%;
     margin: 10px;
@@ -50,27 +69,36 @@
 }
 
 .create-exercise-input {
-    margin: 3px;
+    margin-right: 3px;
 }
 
 .exercise-display-inputs input {
-    margin: 3px;
+    margin-right: 3px;
+    margin-bottom:3px;
 }
 
 .add-workout-button {
-    margin: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+
+.table-wrapper{
+    border: 1px solid gray;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-top: 10px;
+
 }
 
 .workout-table {
-    border: 2px solid black;
-    border-collapse: collapse;
     width: 100%;
     table-layout: auto;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
     font-size: 0.75em;
+    border:none;
+    border-collapse:collapse;
 }
 
 .workout-table th {
@@ -78,6 +106,7 @@
     background-color: rgb(0, 145, 255);
     border: 1px solid gray;
     color: white;
+
 }
 
 .workout-table .date-sets-reps-weight {

@@ -40,7 +40,8 @@ function Chart(props) {
             {
                 label: "Training Volume",
                 data: chartY,
-                borderColor: "blue",
+                borderColor: "#0091FF",
+                backgroundColor: "#0091FF"
             },
         ],
     };
@@ -53,7 +54,7 @@ function Chart(props) {
         <>
             <div className="popup">
                 <div className="popup-inner">
-                    <h4>Workout volume chart</h4>
+                    <h4>Training Volume Chart</h4>
                     <p>
                         This chart graphs the total workout volume (reps x
                         weight x sets) for each workout in the selected

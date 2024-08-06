@@ -103,6 +103,8 @@ function ExerciseDropdown() {
             <button onClick={editExerciseName} className="edit-exercise-name">Change Exercise Name</button>
 			<br/>
 			{isSelected && <ExerciseDisplay selectedExercise={selectedExercise}/>}
+        <br/>
+
         </>
     );
 }

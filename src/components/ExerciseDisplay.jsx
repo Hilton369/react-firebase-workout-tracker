@@ -128,11 +128,16 @@ function ExerciseDisplay(props) {
         return () => unsubscribe();
     }, [selectedExercise]);
 
-    useEffect(()=>{
-        const arrX = [],  arrY = [];
-        for(let i = 0; i < workoutList.length; i++){
+    useEffect(() => {
+        const arrX = [],
+            arrY = [];
+        for (let i = 0; i < workoutList.length; i++) {
             arrX.push(workoutList[i].arr[0]);
-            arrY.push(workoutList[i].arr[1]*workoutList[i].arr[2]*workoutList[i].arr[3])
+            arrY.push(
+                workoutList[i].arr[1] *
+                    workoutList[i].arr[2] *
+                    workoutList[i].arr[3]
+            );
         }
         setChartX(arrX.reverse());
         setChartY(arrY.reverse());
@@ -214,8 +219,9 @@ function ExerciseDisplay(props) {
 
     return (
         <>
+
             {/* Inputs and buttons for adding new workout entry */}
-            <h4>Add a new workout</h4>
+            <h4>Add a new workout entry:</h4>
             <div className="exercise-display-inputs">
                 <input type="date" onChange={handleDateChange} />
                 <input
@@ -254,39 +260,41 @@ function ExerciseDisplay(props) {
                 />
             )}
             {/* Workout Entries Table */}
-            {selectedExercise !== "" && (
-                <table className="workout-table">
-                    <thead>
-                        <tr>
-                            {heading.map((head, headID) => (
-                                <th key={headID}>{head}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {workoutList.map((obj, index) => (
-                            <tr key={index}>
-                                <td className="edit-delete-column">
-                                    <button
-                                        onClick={() => deleteEntry(index)}
-                                        className="delete-button"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                                {obj.arr.map((values, valueIndex) => (
-                                    <td
-                                        key={valueIndex}
-                                        className="date-sets-reps-weight"
-                                    >
-                                        {values}
-                                    </td>
+            <div className="table-wrapper">
+                {selectedExercise !== "" && (
+                    <table className="workout-table">
+                        <thead>
+                            <tr>
+                                {heading.map((head, headID) => (
+                                    <th key={headID}>{head}</th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+                        </thead>
+                        <tbody>
+                            {workoutList.map((obj, index) => (
+                                <tr key={index}>
+                                    <td className="edit-delete-column">
+                                        <button
+                                            onClick={() => deleteEntry(index)}
+                                            className="delete-button"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                    {obj.arr.map((values, valueIndex) => (
+                                        <td
+                                            key={valueIndex}
+                                            className="date-sets-reps-weight"
+                                        >
+                                            {values}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
         </>
     );
 }
