@@ -1,4 +1,5 @@
 Fitness Journal Webapp
+
 A web application for tracking workouts and exercises, built with React and Firebase.
 
 Features
