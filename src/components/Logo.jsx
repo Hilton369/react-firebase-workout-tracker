@@ -1,10 +1,10 @@
-import logo from "../assets/logo.png";
+import logo from "../assets/newlogo.png";
 
 function Logo() {
     return (
         <>
             <div className="logo-wrapper">
-                <img src={logo} alt="logo"/>
+                <img src={logo} alt="logo" />
             </div>
         </>
     );
