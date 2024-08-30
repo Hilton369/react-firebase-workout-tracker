@@ -28,7 +28,7 @@ Setup
 
     3. Create and setup a Firebase project on the Firebase website.
 
-    4. Obtain API key for your Firebase project and set up Firebase configuration.
+    4. Obtain API key for your Firebase project and set up FirebaseConfig.jsx file in src folder.
 
 Usage
 
