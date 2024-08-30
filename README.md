@@ -19,11 +19,12 @@ Setup
 
     1. Clone the repository:
         git clone https://github.com/Hilton369/react-firebase-workout-tracker.git
-        cd react-firebase-workout-tracker.git
+        cd react-firebase-workout-tracker
 
     2. Install dependencies
+        npm install vite@latest
         npm install firebase
-        npm install chart.js react-chartjs-2
+        npm install react-chartjs-2 chart.js
 
     3. Create and setup a Firebase project on the Firebase website.
 
