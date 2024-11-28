@@ -28,7 +28,25 @@ Setup
 
     3. Create and setup a Firebase project on the Firebase website.
 
-    4. Obtain API key for your Firebase project and set up FirebaseConfig.jsx file in src folder.
+    4. Obtain API key for your Firebase project. Create a new file in the ./src folder called FirebaseConfig.jsx and copy the following into it (with your own API key, project id, etc... from your Firebase project setup):
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "firebase/app";
+        import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+
+        <span style="color:red">//YOUR FIREBASE CONFIG GOES HERE</span>
+        
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
 
 Usage
 
