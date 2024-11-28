@@ -40,7 +40,7 @@ Setup
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
 
-        <span style="color:red">//YOUR FIREBASE CONFIG GOES HERE</span>
+        //YOUR FIREBASE CONFIG GOES HERE
         
         };
 
