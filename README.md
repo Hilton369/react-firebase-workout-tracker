@@ -28,7 +28,9 @@ Setup
 
     3. Create and setup a Firebase project on the Firebase website.
 
-    4. Obtain API key for your Firebase project. Create a new file in the ./src folder called FirebaseConfig.jsx and copy the following into it (with your own API key, project id, etc... from your Firebase project setup):
+    4. Obtain API key for your Firebase project. Create a new file in the ./src folder called 
+       FirebaseConfig.jsx and copy the following into it (with your own API key, project id, 
+       etc... from your Firebase project setup):
 
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "firebase/app";
